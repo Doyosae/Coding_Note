@@ -7,6 +7,7 @@ def seq_search (a: Sequence, key: Any) -> int:
             i = i + 1
       return -1
 
+
 if __name__ == "__main__":
       num = int(input("원소 수를 입력하세요.  "))
       x = [None] * num

@@ -1,4 +1,6 @@
 from typing import Any, Sequence
+
+
 def seq_search (a: Sequence, key: Any) -> int:
       i = 0
       
@@ -8,6 +10,7 @@ def seq_search (a: Sequence, key: Any) -> int:
             if a[i] == key:
                   return i
             i = i + 1
+
 
 if __name__ == "__main__":
       num = int(input("원소 수를 입력하세요.  "))
