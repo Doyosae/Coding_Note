@@ -6,7 +6,6 @@ import hashlib
 
 
 class Node:
-
       def __init__ (self, key: Any, value: key, next: Node):
             # 클래스 초기화
             self.key = key
@@ -15,7 +14,6 @@ class Node:
       
 
 class CHainHash:
-
       def __init__ (self, capacity: int) -> None:
             # 체인해시 초기화
             self.capacity = capacity
@@ -27,7 +25,7 @@ class CHainHash:
             return(int(hashlib.sha256(str(key).encode()).hexdigest(), 16) % self.capacity)
       
       def search (self, key: Any) -> Any:
-            hash = self.has_value(key)
+            hash = self.hash_value(key)
             p    = self.table[hash]
 
             # 키 값을 테이블의 크기로 나눈 나머지가 해시 테이블의 인덱스
@@ -42,7 +40,7 @@ class CHainHash:
             return None
 
       def add (self, key: Any,value: Any) -> bool:
-            hash = self.has_value(key)
+            hash = self.hash_value(key)
             p    = self.table[hash]
             
             while p is not None:
