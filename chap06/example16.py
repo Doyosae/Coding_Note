@@ -25,7 +25,7 @@ def merge_sorted (a: Sequence, b: Sequence, c: MutableSequence) -> None:
         
         pc = pc + 1
     
-    '''
+    '''s
     아직 정렬하지 못한 남은 원소 중 na가 더 크면 남은 것이 a에 있다. 따라서 남은 a[pa]를 c[pc]에 삽입
     '''
     while pa < na:
