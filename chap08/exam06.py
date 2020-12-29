@@ -63,7 +63,7 @@ while True:
         lst.clear()
 
     elif menu == Menu.검색:
-        pos = lost.search(int(input('검색할 값을 입력하세요.  ')))
+        pos = lst.search(int(input('검색할 값을 입력하세요.  ')))
         if pos >= 0:
             print(f'그 값의 데이터는 {pos + 1} 번째에 있습니다.')
         else:
@@ -82,4 +82,4 @@ while True:
             print(e)
 
     else:
-        breakssssssssssss
+        break
