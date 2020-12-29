@@ -103,7 +103,7 @@ class BinarySearchTree:
                     is_left_child = True
                     p = p.left
                 
-                # 그렇기 않다면 is_left_chilld = False이고 오른쪽 노드만 존재하므로 p = p.right라 한다.
+                # 그렇지 않다면 is_left_chilld = False이고 오른쪽 노드만 존재하므로 p = p.right라 한다.
                 else:
                     is_left_child = False
                     p = p.right
@@ -119,41 +119,34 @@ class BinarySearchTree:
             if p is self.root:
                 self.root = p.right
             elif is_left_child:
-                parent.left = p.right
+                parent.left  = p.right
             else:
                 parent.right = p.right
 
-        # '''
-        # p.right가 None이라는 의미는 왼쪽 노드들만 있다는 뜻이다.
-        # '''
         elif p.right is None:
             if p is self.root:
                 self.root = p.left
             elif is_left_child:
-                parent.left = p.left
+                parent.left  = p.left
             else:
                 parent.right = p.left
             
-        # '''
-        # 자식 노드가 2개인 경우, 노드를 삭제하는 것
-        #     삭제할 노드의 서브 트리에서 가장 큰 노드를 찾아, 삭제할 노드와 자리를 교환
-        # '''
-        else:
-            parent = p
-            left   = p.left
+        else: # 자식 노드가 두 개인 경우를 삭제하는 경우
+            parent = p          # 현재 노드를 부모로 두고
+            left   = p.left     # 현재 노드의 왼쪽 자식을 left로 하는 서브트리를 탐색
             is_left_child = True
 
             while left.right is not None: # left의 right가 없을 때까지 parent = left, left = left.right 갱신
                 parent = left
                 left   = left.right
-                is_left_child = False
+                is_left_child = False     # 서브트리에서 가장 큰 노드 값을 겟하고 is_left_child를 False로 바꾼다.
             
             # 그렇게 찾은 가장 큰 right.right.right의 값은 left에 저장되어 있다.
             # left -> p에 모두 대입
             p.key   = left.key
             p.value = left.value
 
-            # is_left_child == True이면 left.left -> parent.left를 참조하도록 변경
+            # is_left_child == True이면 left.left -> parent.left를 참조하도록 변경, 즉 왼쪽 자식 노드가 한 개인 경우
             # is_left_child == False이면 left.left -> parent.right에 참조하도록 변경
             if is_left_child:
                 parent.left = left.left
