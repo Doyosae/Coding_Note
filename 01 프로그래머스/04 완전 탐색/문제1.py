@@ -1,30 +1,41 @@
+'''
+사실 이 문제는 이해 자체를 잘 못하겠다...
+'''
 def solution(answers):
-    people1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-    people2 = [2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5]
-    people3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    pattern1 = [1,2,3,4,5]
+    pattern2 = [2,1,2,3,2,4,2,5]
+    pattern3 = [3,3,1,1,2,2,4,4,5,5]
+    score    = [0, 0, 0]
+    result   = []
 
-    list = [people1, people2, people3]
-    count = []
-    for data in list:
-        cnt = 0
-        for index, number in enumerate(data):
-            test = data[index : index + len(answers)]
-            if len(test) != len(answers):
-                break
-            else:
-                for ans, peak in zip(answers, test):
-                    if ans == peak:
-                        cnt = cnt + 1
-                    else:
-                        cnt = 0
-            count.append(cnt)
-        count.append("/")
-    print(count)
-    # print(count.index(max(count))+1)
+    for idx, answer in enumerate(answers):
+        '''
+        pattern3 and answers2
 
+        [3,3,1,1,2,2,4,4,5,5]
+        [1,3,2,4,2]
+        [3,3,1,1,2,2,4,4,5,5]
+          [1,3,2,4,2]
+        [3,3,1,1,2,2,4,4,5,5]
+            [1,3,2,4,2]
+        [3,3,1,1,2,2,4,4,5,5]
+              [1,3,2,4,2]
+        '''
+        if answer == pattern1[idx%len(pattern1)]:
+            score[0] += 1
+        if answer == pattern2[idx%len(pattern2)]:
+            score[1] += 1
+        if answer == pattern3[idx%len(pattern3)]:
+            print(idx, answer, idx%len(pattern3))
+            score[2] += 1
 
-    answer = []
-    return answer
+    for idx, s in enumerate(score):
+        if s == max(score):
+            result.append(idx+1)
+
+    print(result)
+
+    return result
 
 def main():
     solution([1,2,3,4,5])
